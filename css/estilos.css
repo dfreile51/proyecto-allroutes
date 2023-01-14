@@ -1,3 +1,7 @@
+:root {
+    --azul-cielo: #D6E4E5;
+}
+
 * {
     font-family: 'Roboto';
 }
@@ -14,7 +18,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #D6E4E5;
+    background-color: var(--azul-cielo);
+    max-width: 100%;
     /* width: 100%; */
     /* height: 70px; */
     padding: 10px;
@@ -79,9 +84,9 @@ header nav{
 footer {
     display: grid;
     grid: auto / repeat(3, 1fr);
-    background-color: #D6E4E5;
+    background-color: var(--azul-cielo);
     margin-top: auto;
-    width: 100%;
+    max-width: 100%;
 }
 
 footer a {
@@ -114,4 +119,19 @@ footer a {
     align-items: center;
     justify-content: center;
     padding: 15px;
+}
+/* Fin estilos footer */
+
+/* Estilos para el contenido de la pagina */
+.content {
+    /* background-image: url('../imgs/man.jpg'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    border: 1px solid red;
+}
+
+.content img {
+    max-width: 100%;
+    width: 100%;
 }
