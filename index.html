@@ -4,20 +4,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="preload" href="css/normalize.css" as="style">
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="preload" href="css/estilos.css" as="style">
     <link rel="stylesheet" href="css/estilos.css">
-    <title>Inicio</title>
 </head>
 <body>
     <header id="encabezado">
     </header>
 
-    <div class="content">
-        <img src="imgs/man.jpg" alt="Man">
+    <div class="contenedor">
+        <div class="hero">
+            <h2>Explora las mejores rutas con AllRoutes</h2>
+            <ul>
+                <li>Acceda a las mejores rutas de España</li>
+                <li>Planifica tus próximas rutas</li>
+                <li>Máxima seguridad con los mejores mapas</li>
+            </ul>
+            <div class="boton-hero">
+                <button class="boton nav-registro">Registrarse</button>
+            </div>
+        </div>
     </div>
     
+    <div class="contenido sombra">
+        <div class="search-container">
+            <form action="#" class="search-bar sombra">
+                <input type="text" name="search" placeholder="Buscar ruta...">
+                <button><img src="imgs/lupa.png" alt="lupa"></button>
+            </form>
+        </div>
+        <div class="container-rutas">
+            <div class="card-ruta">
+                <img src="imgs/default-image.jpg">
+                <h4>Ruta 1</h4>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, est rem iusto ipsum ratione quis illo odio, possimus beatae, earum expedita exercitationem blanditiis. 
+                    Quod quisquam nam nisi odit atque id!</p>
+                <a href="#">Leer más</a>
+            </div>
+            <div class="card-ruta">
+                <img src="imgs/default-image.jpg">
+                <h4>Ruta 2</h4>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, est rem iusto ipsum ratione quis illo odio, possimus beatae, earum expedita exercitationem blanditiis. 
+                    Quod quisquam nam nisi odit atque id!</p>
+                <a href="#">Leer más</a>
+            </div>
+            <div class="card-ruta">
+                <img src="imgs/default-image.jpg">
+                <h4>Ruta 3</h4>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, est rem iusto ipsum ratione quis illo odio, possimus beatae, earum expedita exercitationem blanditiis. 
+                    Quod quisquam nam nisi odit atque id!</p>
+                <a href="#">Leer más</a>
+            </div>
+            <div class="card-ruta">
+                <img src="imgs/default-image.jpg">
+                <h4>Ruta 4</h4>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, est rem iusto ipsum ratione quis illo odio, possimus beatae, earum expedita exercitationem blanditiis. 
+                    Quod quisquam nam nisi odit atque id!</p>
+                <a href="#">Leer más</a>
+            </div>
+            <div class="card-ruta">
+                <img src="imgs/default-image.jpg">
+                <h4>Ruta 5</h4>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, est rem iusto ipsum ratione quis illo odio, possimus beatae, earum expedita exercitationem blanditiis. 
+                    Quod quisquam nam nisi odit atque id!</p>
+                <a href="#">Leer más</a>
+            </div>
+            <div class="card-ruta">
+                <img src="imgs/default-image.jpg">
+                <h4>Ruta 6</h4>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, est rem iusto ipsum ratione quis illo odio, possimus beatae, earum expedita exercitationem blanditiis. 
+                    Quod quisquam nam nisi odit atque id!</p>
+                <a href="#">Leer más</a>
+            </div>
+        </div>
+    </div>
     <footer id="piePagina">
     </footer>
     <script src="js/cargaHeaderFooter.js"></script>

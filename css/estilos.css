@@ -1,137 +1,267 @@
 :root {
-    --azul-cielo: #D6E4E5;
+    --primario: #D6E4E5;
+    --verde: #54B435;
+    --verde_oscuro: #499b2e;
+    --negro: #000000;
+    --blanco: #ffffff;
 }
 
-* {
-    font-family: 'Roboto';
+/* Globales */
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    margin: 0;
+
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* Estilos para el header*/
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--azul-cielo);
-    max-width: 100%;
-    /* width: 100%; */
-    /* height: 70px; */
-    padding: 10px;
+#encabezado {
+    background-color: var(--primario);
 }
 
-header a {
-    text-decoration: none;
-    color: black;
-}
-
-header nav{
-    margin-right: 30px;
-}
-
-.nombre-empresa {
-    font-family: 'Lobster';
-    font-size: 32px;
+@media (min-width: 768px) {
+    #encabezado {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 .logo {
     display: flex;
-    align-items: center;
-    margin-left: 30px;
-    /* border: 1px solid black; */
+    align-items: flex-end;
+    text-decoration: none;
+    color: var(--negro);
+    padding: 1rem;
 }
 
 .logo img {
-    width: 45px;
-    height: 45px;
-    margin-right: 10px;
+    height: 6rem;
+    margin-right: .7rem;
+}
+
+.nombre-empresa {
+    font-family: 'Lobster', cursive;
+    font-size: 3.6rem;
+    font-weight: bold;
+}
+
+/* Botones */
+.botones {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+}
+
+.boton {
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 5rem;
 }
 
 .nav-inicio {
-    background-color: transparent;
-    padding: 5px 23px;
-    border-radius: 15px;
+    background: transparent;
+    border: .15rem solid var(--negro);
     font-weight: bold;
-    margin-right: 12px;
-}
-
-.nav-inicio:hover {
-    cursor: pointer;
-    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+    text-shadow: 4px 4px 15px #000000;
 }
 
 .nav-registro {
-    background-color: #54B435;
-    color: white;
-    border: none;
-    padding: 7px 30px;
+    background-color: var(--verde);
+    color: var(--blanco);
     font-weight: bold;
-    border-radius: 15px;
+    text-shadow: 4px 4px 10px #000000;
 }
 
-.nav-registro:hover {
-    cursor: pointer;
-    background-color: #499b2e;
+.botones .nav-inicio {
+    margin-right: .5rem;
+}
+
+.botones .nav-registro {
+    margin-left: .5rem;
 }
 /* Fin estilos para el header */
 
 /* Estilos para el footer */
-footer {
-    display: grid;
-    grid: auto / repeat(3, 1fr);
-    background-color: var(--azul-cielo);
+#piePagina {
     margin-top: auto;
-    max-width: 100%;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    background-color: var(--primario);
 }
 
-footer a {
-    text-decoration: none;
-    color: black;
+@media (min-width: 768px) {
+    #piePagina {
+        grid-template-rows: none;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.copy, .logo-footer, .redes-sociales {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .redes-sociales img {
-    width: 35px;
-    height: 35px;
-    margin-left: 20px;
-}
-
-.redes-sociales {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-}
-
-.logo-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-}
-
-.copy {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
+    margin: 0 .5rem;
+    height: 3rem;
 }
 /* Fin estilos footer */
 
-/* Estilos para el contenido de la pagina */
-.content {
-    /* background-image: url('../imgs/man.jpg'); */
-    background-size: cover;
+/* Estilos para hero */
+.contenedor {
+    background-image: url(../imgs/man.jpg);
     background-repeat: no-repeat;
-    max-width: 100%;
-    border: 1px solid red;
+    background-size: cover;
+    background-position: center;
+    height: 610px;
+    position: relative;
+    margin-bottom: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.content img {
-    max-width: 100%;
+.hero {
+    color: var(--blanco);
+    position: absolute;
+    /* left: 1rem; */
+}
+
+@media (min-width: 768px) {
+    .contenedor {
+        display: block;
+    }
+    .hero {
+        left: 7rem;
+        bottom: 20rem;
+    }
+}
+
+.hero h2 {
+    font-size: 3rem;
+    font-style: italic;
+}
+
+.hero li {
+    font-size: 2rem;
+    line-height: 1.5;
+}
+
+.boton-hero {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+/* Fin estilos de hero */
+
+/* Estilos para el contenido y barra de busqueda */
+.contenido {
+    max-width: 120rem;
+    margin: 0 auto;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.sombra {
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.48);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.48);
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.48);
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10rem 0;
+}
+
+@media (min-width: 768px) {
+    .search-bar {
+        max-width: 70%;
+    }
+}
+
+.search-bar {
     width: 100%;
+    border-radius: 6rem;
+    background-color: #F3F3F3;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.search-bar input {
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    font-size: 2rem;
+}
+
+.search-bar button {
+    background: transparent;
+    border: none;
+}
+
+img[alt='lupa'] {
+    width: 4rem;
+    height: 4rem;
+    opacity: 0.4;
+}
+/* Fin estilos para el contenido y barra de busqueda */
+
+/* Estilos para las card rutas */
+@media (min-width: 768px) {
+    .container-rutas {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+.container-rutas {
+    display: grid;
+    row-gap: 1rem;
+}
+
+.card-ruta {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   border-radius: 1rem;
+   overflow: hidden;
+   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card-ruta img {
+    width: 100%;
+}
+
+.card-ruta h4 {
+    font-size: 2rem;
+    margin: 1rem 0;
+}
+
+.card-ruta p {
+    line-height: 2;
+    text-align: center;
+    margin: 0;
+}
+
+.card-ruta a {
+    text-decoration: none;
+    margin: 1rem 0;
 }
