@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="preload" href="css/estilos.css" as="style">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
@@ -26,7 +26,7 @@
                 <li>Máxima seguridad con los mejores mapas</li>
             </ul>
             <div class="boton-hero">
-                <button class="boton nav-registro">Registrarse</button>
+                <button class="boton nav-registro" onclick="registrarse()">Registrarse</button>
             </div>
         </div>
     </div>
@@ -39,6 +39,7 @@
             </form>
         </div>
         <div class="container-rutas">
+            <h2 class="rutas-titulo">Rutas recomendadas</h2>
             <div class="card-ruta">
                 <img src="imgs/default-image.jpg">
                 <h4>Ruta 1</h4>
@@ -83,8 +84,24 @@
             </div>
         </div>
     </div>
+
+    <div id="formularios" class="fondo_invisible">
+        <div id="ventana" class="ventana">
+            <div class="ventana_header">
+                <button class="boton_cerrar" onclick="cerrarVentana()"><img src="imgs/cerrar.png" alt="cerrar"></button>
+            </div>
+            <div id="ventana_contenido">
+            </div>
+            <!-- <div class="ventana_footer">
+                <p>
+                    hola mundo
+                </p>
+            </div> -->
+        </div>
+    </div>
     <footer id="piePagina">
     </footer>
+    <script src="js/ventanasModales.js"></script>
     <script src="js/cargaHeaderFooter.js"></script>
 </body>
 </html>
