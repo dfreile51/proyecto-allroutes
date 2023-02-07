@@ -5,6 +5,7 @@
     --negro: #000000;
     --blanco: #ffffff;
     --gris: #5f5f5f;
+    --gris_claro: #f4f4f4;
 }
 
 /* Globales */
@@ -77,14 +78,14 @@ body {
     background: transparent;
     border: .15rem solid var(--negro);
     font-weight: bold;
-    text-shadow: 4px 4px 15px #000000;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
 .nav-registro {
     background-color: var(--verde);
     color: var(--blanco);
     font-weight: bold;
-    text-shadow: 4px 4px 10px #000000;
+    text-shadow: 4px 4px 10px rgba(0,0,0,0.5);
 }
 
 .botones .nav-inicio {
@@ -131,7 +132,6 @@ body {
     background-position: center;
     height: 610px;
     position: relative;
-    margin-bottom: 2rem;
 
     display: flex;
     justify-content: center;
@@ -174,10 +174,9 @@ body {
 /* Estilos para el contenido y barra de busqueda */
 .contenido {
     max-width: 120rem;
-    margin: 0 auto;
     border-radius: 1rem;
     padding: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
 }
 
 .sombra {
@@ -255,12 +254,12 @@ img[alt='lupa'] {
 }
 
 .card-ruta {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   border-radius: 1rem;
-   overflow: hidden;
-   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .card-ruta img {
@@ -282,7 +281,7 @@ img[alt='lupa'] {
     text-decoration: none;
     margin: 1rem 0;
 }
-/* Fin estilos para las car rutas */
+/* Fin estilos para las card rutas */
 
 /* Estilos para las ventanas modales y formularios */
 .fondo_invisible {
@@ -296,38 +295,48 @@ img[alt='lupa'] {
 .ventana_negra {
     display: flex;
     justify-content: center;
+    align-items: center;
     position: fixed;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, .8);
+    z-index: 1000;
 }
 
 .ventana {
     position: fixed;
-    overflow: auto;
     background-color: var(--blanco);
     border-radius: 1rem;
+    overflow: auto;
+}
+
+.ventana_registro {
     width: 100%;
     height: 100%;
 }
+
 #ventana_contenido {
     display: flex;
     flex-direction: column;
     padding: 2rem 4rem;
+    overflow: auto;
 }
 
 @media (min-width: 768px) {
+    .ventana_negra {
+        align-items: unset;
+    }
+
     .ventana{
-        top: 5rem;
+        top: 1rem;
         width: auto;
         height: auto;
+        overflow: hidden;
     }
 
     #ventana_contenido {
-        padding: 2rem 4rem;
         width: 40rem;
         max-height: 65rem;
-        overflow: auto;
     }
 }
 
@@ -369,7 +378,7 @@ img[alt='lupa'] {
     padding: 1rem 0;
     font-weight: bold;
     border-radius: .5rem;
-    text-shadow: 4px 4px 10px #000000;
+    text-shadow: 4px 4px 10px var(--negro);
 }
 /* Fin estilos para las ventanas modales y formularios */
 
@@ -387,5 +396,113 @@ img[alt='lupa'] {
 }
 
 .nav-inicio:hover {
-    box-shadow: 2px 2px 5px #000000;
+    box-shadow: 2px 2px 5px var(--negro);
+}
+
+/* Estilos para los enlaces */
+.enlaces {
+    text-decoration: none;
+    color: var(--negro);
+}
+
+/* Estilos para la pagina de rutas */
+.main, .main__header {
+    display: flex;
+}
+
+.main {
+    flex-direction: column;
+    flex: 1 1 auto;
+    height: calc(100vh - 160px);
+    max-height: calc(100vh - 160px);
+}
+
+.main__header {
+    flex-direction: row;
+    flex: 0 0 auto;
+}
+
+.main__body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    height: 100%;
+}
+
+.main__filters {
+    padding: 1rem .1rem 1rem 3.2rem;
+}
+
+.main__list {
+    grid-column: 1 / 2;
+    background-color: var(--gris_claro);
+}
+
+.main__map {
+    grid-column: 2 / 3;
+}
+
+#map {
+    height: 100%;
+}
+
+/* Estilos para los div de las rutas */
+.trail {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    max-height: 18rem;
+    margin: 1rem;
+
+    background-color: var(--blanco);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.trail__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+}
+
+.trail__header span {
+    font-size: 3.2rem;
+    margin-left: 1rem;
+}
+
+.trail__body {
+    display: flex;
+    flex-direction: row;
+    padding: 1.5rem;
+
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+}
+
+.trail__image {
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
+}
+
+.trail__image img {
+    height: 100%;
+    width: 100%;
+}
+
+.trail_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 2rem;
+}
+
+.trail_item small{
+    margin-bottom: .5rem;
+}
+
+.trail_item h4 {
+    margin: 0;
 }

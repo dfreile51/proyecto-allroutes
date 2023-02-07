@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar usuario</title>
+    <link rel="preload" href="css/normalize.css" as="style">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="css/estilos.css" as="style">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header id="encabezado">
+    </header>
+
+    <main style="display: flex; flex-direction: column; align-items: center;">
+        <div class="contenido sombra">
+            <h1>Editar perfil</h1>
+            <form action="#" method="post" onsubmit="funcionSubmit(event)">
+                <label for="nombre">Nombre y apellidos:</label>
+                <input class='inputs' type="text" name="nombre" id="nombre">
+                <br>
+                <label for="user">Nombre de usuario:</label>
+                <input class='inputs' type="text" name="user" id="user">
+                <br>
+                <label for="email">Correo eletrónico:</label>
+                <input class='inputs' type="email" name="email" id="email">
+                <br>
+                <label for="pass">Contraseña:</label>
+                <input class='inputs' type="password" name="pass" id="pass">
+                <br>
+                <label for="estatura">Estatura:</label>
+                <input class='inputs' type="number" name="estatura" id="estatura">
+                <br>
+                <label for="peso">Peso:</label>
+                <input class='inputs' type="number" name="peso" id="peso">
+                <br>
+                <label for="fechaNac">Fecha de nacimiento:</label>
+                <input class='inputs' type="date" name="fechaNac" id="fechaNac">
+                <br>
+                <label for="actividades">Actividades:</label><br>
+                <input type="checkbox" id="senderismo" name="senderismo" value="senderismo">
+                <label for="senderismo">Senderismo</label><br>
+                <input type="checkbox" id="bicicleta" name="bicicleta" value="bicicleta">
+                <label for="bicicleta">Bicileta</label><br>
+                <input type="checkbox" id="running" name="running" value="running">
+                <label for="running">Running</label><br>
+                <input style="margin-bottom: 3rem;" type="checkbox" id="alpinismo" name="alpinismo" value="alpinismo">
+                <label for="alpinismo">Alpinismo</label>
+                <br>
+                <input type="submit" value="Guardar cambios" onclick="editarUsuario()">
+                <a href="index.html">Cancelar</a>
+            </form>
+        </div>
+    </main>
+    
+
+    <footer id="piePagina">
+    </footer>
+    
+    <script src="js/enviarDatosFormulario.js"></script>
+    <script src="js/editarDatosUsuario.js"></script>
+    <script src="js/cargaHeaderFooter.js"></script>
+</body>
+</html>

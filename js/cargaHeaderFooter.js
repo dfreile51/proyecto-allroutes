@@ -1,4 +1,11 @@
-const paginaHeader = "layout/header.html";
+let paginaHeader = "";
+
+if(!localStorage.getItem('token')) {
+    paginaHeader = "layout/header.html";
+} else {
+    paginaHeader = "layout/header-inicioSesion.html";
+}
+
 const paginaFooter = "layout/footer.html";
 
 loadHeader(paginaHeader);
