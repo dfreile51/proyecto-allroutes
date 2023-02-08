@@ -32,12 +32,12 @@ function formularioLogin() {
         <h3>Inicio de sesión en AllRoutes</h3>
         <form action='#' method='post' onsubmit='funcionSubmit(event)'>
             <label for='username'>Nombre de usuario:</label><br>
-            <input class='inputs' type='text' name='username' id='username'>
+            <input class='inputs' type='text' name='usernameSesi' id='usernameSesi' onkeyup='comprobarCamposVaciosSesi()'>
             <br>
-            <label for='pass'>Contraseña:</label><br>
-            <input class='inputs' type='password' name='pass' id='pass'>
+            <label for='passSesi'>Contraseña:</label><br>
+            <input class='inputs' type='password' name='passSesi' id='passSesi' onkeyup='comprobarCamposVaciosSesi()'>
             <br>
-            <input class='boton_formulario' onclick='recogerDatosInicio()' type='button' value='Iniciar sesión'>
+            <input class='boton_formulario' id='btnFormSesi' onclick='recogerDatosInicio()' type='button' disabled='' value='Iniciar sesión'>
         </form>
     `;
 }
@@ -46,30 +46,32 @@ function formularioRegistro() {
     document.querySelector('#ventana_contenido').innerHTML = `
         <h3>Registrate en AllRoutes</h3>
         <form action='#' method='post' onsubmit='funcionSubmit(event)'>
-            <label for='nombre'>Nombre y apellidos:</label><br>
-            <input class='inputs' type='text' name='nombre' id='nombre'>
+            <label for='fullname'>Nombre y apellidos:</label><br>
+            <input class='inputs' type='text' name='fullname' id='fullname' onkeyup='comprobarCamposVaciosReg()'>
             <br>
             <label for='user'>Nombre de usuario:</label><br>
-            <input class='inputs' type='text' name='user' id='user'>
+            <input class='inputs' type='text' name='usernameReg' id='usernameReg' onkeyup='comprobarCamposVaciosReg()'>
             <br>
             <label for='email'>Correo electrónico:</label><br>
-            <input class='inputs' type='email' name='email' id='email'>
+            <input class='inputs' type='email' name='email' id='email' onkeyup='comprobarCamposVaciosReg()'>
             <br>
             <label for='estatura'>Estatura:</label><br>
-            <input class='inputs' type='number' name='estatura' id='estatura'>
+            <input class='inputs' type='number' name='estatura' id='estatura' onkeyup='comprobarCamposVaciosReg()'>
             <br>
             <label for='peso'>Peso:</label><br>
-            <input class='inputs' type='number' name='peso' id='peso'>
+            <input class='inputs' type='number' name='peso' id='peso' onkeyup='comprobarCamposVaciosReg()'>
             <br>
             <label for='fechaNac'>Fecha de nacimiento:</label><br>
             <input class='inputs' type='date' name='fechaNac' id='fechaNac'>
             <br>
-            <label for='pass'>Contraseña:</label><br>
-            <input class='inputs' type='password' name='pass' id='pass'>
+            <label for='passReg'>Contraseña:</label><br>
+            <input class='inputs' type='password' name='passReg' id='passReg' onkeyup='comprobarCamposVaciosReg(); comprobarPassReg();'>
             <br>
+            <div id='passRegError' class='fondo_invisible'></div>
             <label for='repPas'>Repetir contraseña:</label><br>
-            <input class='inputs' type='password' name='repPass' id='repPass'>
+            <input class='inputs' type='password' name='repPass' id='repPass' onkeyup='comprobarCamposVaciosReg(); comprobarRepPass();'>
             <br>
+            <div id='repPassError' class='fondo_invisible'></div>
             <label for='actividades'>Actividades:</label><br>
             <input type="checkbox" id="senderismo" name="senderismo" value="senderismo">
             <label for="senderismo">Senderismo</label><br>
@@ -80,7 +82,7 @@ function formularioRegistro() {
             <input style="margin-bottom: 3rem;" type="checkbox" id="alpinismo" name="alpinismo" value="alpinismo">
             <label for="alpinismo">Alpinismo</label>
             <br>
-            <input class='boton_formulario' onclick='recogerDatos()' type='submit' value='Registrarse'>
+            <input class='boton_formulario' id='btnFormReg' onclick='recogerDatos()' type='submit' disabled='' value='Registrarse'>
         </form>
     `;
 }

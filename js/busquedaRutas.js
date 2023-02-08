@@ -8,9 +8,9 @@ function mainHeader() {
     main_header.innerHTML = `
                 <div class='main__filters'>
                     <form action="#" method="post" onsubmit="funcionSubmit(event)">
-                        <input type='text' name='nombre_ruta' id='nombre_ruta' onchange='mainList()' placeholder='Nombre ruta...'>
-                        <input type='number' name='dist_min' id='dist_min' onchange='mainList()' placeholder='Distacia mínima...'>
-                        <input type='number' name='dist_max' id='dist_max' onchange='mainList()' placeholder='Distacia máxima...'>
+                        <input type='text' name='nombre_ruta' id='nombre_ruta' onkeyup='mainList()' placeholder='Nombre ruta...'>
+                        <input type='number' name='dist_min' id='dist_min' onkeyup='mainList()' placeholder='Distacia mínima...'>
+                        <input type='number' name='dist_max' id='dist_max' onkeyup='mainList()' placeholder='Distacia máxima...'>
                     </form>
                 </div>`;
 }

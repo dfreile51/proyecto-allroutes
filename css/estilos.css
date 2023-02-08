@@ -62,10 +62,14 @@ body {
 }
 
 /* Botones */
-.botones {
+.botones, .botones-editarUsu {
     display: flex;
     align-items: center;
     padding: 1rem;
+}
+
+.botones-editarUsu {
+    justify-content: center;
 }
 
 .boton {
@@ -81,18 +85,35 @@ body {
     text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
-.nav-registro {
+.nav-registro,
+.guardar-cambios,
+.cerrar-sesion {
     background-color: var(--verde);
     color: var(--blanco);
     font-weight: bold;
     text-shadow: 4px 4px 10px rgba(0,0,0,0.5);
 }
 
+.cancelar {
+    background-color: red;
+    color: var(--blanco);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.botones-editarUsu .guardar-cambios {
+    margin-right: .5rem;
+}
+
+.botones-editarUsu .cancelar {
+    margin-left: .5rem;
+}
+
 .botones .nav-inicio {
     margin-right: .5rem;
 }
 
-.botones .nav-registro {
+.botones .nav-registro, .cerrar-sesion {
     margin-left: .5rem;
 }
 /* Fin estilos para el header */
@@ -357,6 +378,12 @@ img[alt='lupa'] {
     margin-bottom: 3rem;
 }
 
+.inputs2 {
+    width: 100%;
+    height: 3.5rem;
+    margin-bottom: 0;
+}
+
 .boton_cerrar {
     padding: 0;
     border: none;
@@ -380,18 +407,42 @@ img[alt='lupa'] {
     border-radius: .5rem;
     text-shadow: 4px 4px 10px var(--negro);
 }
+
+.boton_formulario[disabled] {
+    cursor: default;
+    background-color: var(--verde_oscuro);
+}
+
+.divPassRegError, .divRepPass {
+    display: block;
+    margin-bottom: 3rem;
+}
+
+.spanError {
+    font-size: 1.2rem;
+    color: red;
+}
 /* Fin estilos para las ventanas modales y formularios */
 
 /* Estilos para los hover */
 .boton_formulario,
 .boton_cerrar,
 .nav-inicio,
-.nav-registro {
+.nav-registro,
+.guardar-cambios,
+.cerrar-sesion,
+.cancelar {
     cursor: pointer;
 }
 
+.cancelar:hover {
+    background-color: rgb(220, 0, 0);
+}
+
 .boton_formulario:hover,
-.nav-registro:hover {
+.nav-registro:hover,
+.guardar-cambios:hover,
+.cerrar-sesion:hover {
     background-color: var(--verde_oscuro);
 }
 
@@ -403,6 +454,13 @@ img[alt='lupa'] {
 .enlaces {
     text-decoration: none;
     color: var(--negro);
+}
+
+/* Estilos para la pagina de editar usuario */
+.btn__eliminarCuenta {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 2rem;
 }
 
 /* Estilos para la pagina de rutas */
@@ -424,9 +482,10 @@ img[alt='lupa'] {
 
 .main__body {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1.3fr 2fr;
     grid-template-rows: auto;
     height: 100%;
+    overflow: auto;
 }
 
 .main__filters {
@@ -436,14 +495,17 @@ img[alt='lupa'] {
 .main__list {
     grid-column: 1 / 2;
     background-color: var(--gris_claro);
+    overflow: auto;
 }
 
 .main__map {
     grid-column: 2 / 3;
+    overflow: auto;
 }
 
 #map {
     height: 100%;
+    width: 100%;
 }
 
 /* Estilos para los div de las rutas */

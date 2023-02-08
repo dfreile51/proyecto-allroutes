@@ -6,13 +6,13 @@ function funcionSubmit(event) {
 /* Funcion para registrar a un usuario */
 function recogerDatos() {
 
-    let nombre = document.querySelector('#nombre');
-    let username = document.querySelector('#user');
+    let fullname = document.querySelector('#fullname');
+    let username = document.querySelector('#usernameReg');
     let email = document.querySelector('#email');
     let estatura = document.querySelector('#estatura');
     let peso = document.querySelector('#peso');
     let fechaNac = document.querySelector('#fechaNac');
-    let pass = document.querySelector('#pass');
+    let pass = document.querySelector('#passReg');
     let senderismo = document.querySelector('#senderismo');
     let bicicleta = document.querySelector('#bicicleta');
     let running = document.querySelector('#running');
@@ -26,7 +26,7 @@ function recogerDatos() {
     alpinismo.checked ? actividades.push(alpinismo.value) : '';
 
     let datosUsuario = {
-        fullname: `${nombre.value}`,
+        fullname: `${fullname.value}`,
         username: `${username.value}`,
         email: `${email.value}`,
         pass: `${pass.value}`,
@@ -62,8 +62,8 @@ function recogerDatos() {
 
 /* Funcion para iniciar sesion */
 function recogerDatosInicio() {
-    let nombreUsu = document.querySelector('#username');
-    let pass = document.querySelector('#pass');
+    let nombreUsu = document.querySelector('#usernameSesi');
+    let pass = document.querySelector('#passSesi');
 
     let datosUsuario = {
         username: `${nombreUsu.value}`,
@@ -91,11 +91,12 @@ function recogerDatosInicio() {
         })
         .then(data => {
             console.log(data);
-            console.log(data.token);
 
-            localStorage.setItem('token', `${data.token}`);
-            localStorage.setItem('id', `${data.id}`)
-            location.reload();
+            if(data.token != undefined && data.id != undefined) {
+                localStorage.setItem('token', `${data.token}`);
+                localStorage.setItem('id', `${data.id}`)
+                location.reload();
+            }
         })
 }
 

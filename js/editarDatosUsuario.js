@@ -1,7 +1,3 @@
-function funcionSubmit(event) {
-    event.preventDefault();
-}
-
 function editarUsuario() {
     let token = localStorage.getItem('token');
     let identificador = localStorage.getItem('id');
@@ -62,5 +58,35 @@ function editarUsuario() {
         // localStorage.setItem('token', token);
 
         console.log(data);
+    })
+}
+
+function eliminarCuenta() {
+    let token = localStorage.getItem('token');
+    let identificador = localStorage.getItem('id');
+
+    fetch(`http://localhost:5000/api/users?id=${identificador}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': token
+        }
+    })
+    .then(response => {
+        switch (response.status) {
+            case 200:
+                console.log("Usuario eliminado correctamente");
+                break;
+            case 404:
+                console.log("El usuario no existe");
+                break;
+            case 400:
+                console.log("No se ha indicado el nombre de usuario o el id");
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+        localStorage.clear();
+        window.location.href = "index.html";
     })
 }
