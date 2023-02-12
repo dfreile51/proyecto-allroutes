@@ -1,6 +1,58 @@
+if(localStorage.getItem('id')) {
+    rellenarCamposForm();
+}
+
+function rellenarCamposForm() {
+    let identificador = localStorage.getItem('id');
+    
+    let url = `http://localhost/proyecto-allroutes/php/api/users?id=${identificador}`;
+    
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        }
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        if(data) {
+            let fullname = document.querySelector('#fullname');
+            let username = document.querySelector('#user');
+            let email = document.querySelector('#email');
+            let estatura = document.querySelector('#estatura');
+            let peso = document.querySelector('#peso');
+            let fechaNac = document.querySelector('#fechaNac');
+            let pass = document.querySelector('#pass');
+            let senderismo = document.querySelector('#senderismo');
+            let bicicleta = document.querySelector('#bicicleta');
+            let running = document.querySelector('#running');
+            let alpinismo = document.querySelector('#alpinismo');
+    
+            console.log(data);
+    
+            fullname.value = data['fullname'];
+            username.value = data['username'];
+            email.value = data['email'];
+            estatura.value = data['height'];
+            peso.value = data['weight'];
+            fechaNac.value = data['birthday'];
+            pass.value = data['pass'];
+            senderismo.checked = data['activities'].some((item) => item == 'senderismo');
+            bicicleta.checked = data['activities'].some((item) => item == 'bicicleta');
+            running.checked = data['activities'].some((item) => item == 'running');
+            alpinismo.checked = data['activities'].some((item) => item == 'alpinismo');
+        } else {
+            console.log(data['msg']);
+        }
+        
+    })
+}
+
 function editarUsuario() {
     let token = localStorage.getItem('token');
-    let identificador = localStorage.getItem('id');
+    let username = localStorage.getItem('username');
 
     let email = document.querySelector('#email');
     let estatura = document.querySelector('#estatura');
@@ -20,73 +72,54 @@ function editarUsuario() {
     alpinismo.checked ? actividades.push(alpinismo.value) : '';
 
     let datosUsuario = {
-        id: identificador,
-        email: `${email.value}`,
-        pass: `${pass.value}`,
-        height: `${estatura.value}`,
-        weight: `${peso.value}`,
-        birthday: `${fechaNac.value}`,
-        activities: actividades
+        "email": `${email.value}`,
+        "pass": `${pass.value}`,
+        "height": `${estatura.value}`,
+        "weight": `${peso.value}`,
+        "birthday": `${fechaNac.value}`,
+        actividades,
     };
 
-    fetch(`http://localhost:5000/api/user`, {
+    fetch(`http://localhost/proyecto-allroutes/php/api/users?username=${username}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(datosUsuario)
     })
     .then(response => {
-        switch (response.status) {
-            case 200:
-                console.log("Actualizado");
-                break;
-            case 400:
-                console.log("Identificador no valido");
-                break;
-            case 401:
-                console.log("Token no valido");
-        }
         return response.json();
     })
     .then(data => {
-        // let token = data.token;
-        // let id = data.id;
-        // console.log(token);
-        // console.log(id);
-        // localStorage.setItem('token', token);
-
-        console.log(data);
+        if (data['success']) {
+            console.log(data['msg']);
+        } else {
+            console.log(data['msg']);
+        }
     })
 }
 
 function eliminarCuenta() {
     let token = localStorage.getItem('token');
-    let identificador = localStorage.getItem('id');
+    let username = localStorage.getItem('username');
 
-    fetch(`http://localhost:5000/api/users?id=${identificador}`, {
+    fetch(`http://localhost/proyecto-allroutes/php/api/users?username=${username}`, {
         method: 'DELETE',
         headers: {
-            'Authorization': token
+            'Authorization': `Bearer ${token}`
         }
     })
     .then(response => {
-        switch (response.status) {
-            case 200:
-                console.log("Usuario eliminado correctamente");
-                break;
-            case 404:
-                console.log("El usuario no existe");
-                break;
-            case 400:
-                console.log("No se ha indicado el nombre de usuario o el id");
-        }
         return response.json();
     })
     .then(data => {
-        console.log(data);
-        localStorage.clear();
-        window.location.href = "index.html";
+        if(data['success']) {
+            console.log(data['msg']);
+            localStorage.clear();
+            window.location = "index.html"
+        } else{
+            console.log(data['msg']);
+        }
     })
 }

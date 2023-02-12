@@ -26,17 +26,17 @@ function recogerDatos() {
     alpinismo.checked ? actividades.push(alpinismo.value) : '';
 
     let datosUsuario = {
-        fullname: `${fullname.value}`,
-        username: `${username.value}`,
-        email: `${email.value}`,
-        pass: `${pass.value}`,
-        height: `${estatura.value}`,
-        weight: `${peso.value}`,
-        birthday: `${fechaNac.value}`,
-        activities: actividades
+        "username": `${username.value}`,
+        "fullname": `${fullname.value}`,
+        "email": `${email.value}`,
+        "pass": `${pass.value}`,
+        "height": `${estatura.value}`,
+        "weight": `${peso.value}`,
+        "birthday": `${fechaNac.value}`,
+        actividades,
     };
-
-    let url = "http://localhost:5000/api/register";
+    console.log(datosUsuario);
+    let url = "http://localhost/proyecto-allroutes/php/api/users/";
 
     fetch(url, {
         method: 'POST',
@@ -46,17 +46,14 @@ function recogerDatos() {
         body: JSON.stringify(datosUsuario)
     })
         .then(response => {
-            switch (response.status) {
-                case 200:
-                    console.log("El usuario se ha registrado con éxito");
-                    break;
-                case 400:
-                    console.log("Ha habido un error");
-            }
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            if (data['success']) {
+                console.log(data['msg']);
+            } else {
+                console.log(data['msg']);
+            }
         })
 }
 
@@ -70,7 +67,7 @@ function recogerDatosInicio() {
         pass: `${pass.value}`
     };
 
-    let url = "http://localhost:5000/api/login";
+    let url = "http://localhost/proyecto-allroutes/php/api/users/";
 
     fetch(url, {
         method: 'POST',
@@ -80,22 +77,16 @@ function recogerDatosInicio() {
         body: JSON.stringify(datosUsuario)
     })
         .then(response => {
-            switch (response.status) {
-                case 200:
-                    console.log("El usuario existe");
-                    break;
-                case 401:
-                    console.log("Ha habido un error");
-            }
             return response.json();
         })
         .then(data => {
-            console.log(data);
-
-            if(data.token != undefined && data.id != undefined) {
-                localStorage.setItem('token', `${data.token}`);
-                localStorage.setItem('id', `${data.id}`)
+            if (data['success']) {
+                localStorage.setItem('token', `${data['token']}`);
+                localStorage.setItem('username', `${data['username']}`)
+                localStorage.setItem('id', `${data['id']}`)
                 location.reload();
+            } else {
+                console.log(data['msg']);
             }
         })
 }

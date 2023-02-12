@@ -1,6 +1,8 @@
 function inciarSesion() {
     crearVentana();
     formularioLogin();
+    let ventana = document.querySelector('#ventana');
+    ventana.classList.remove('ventana_registro');
 }
 
 function registrarse() {
@@ -13,18 +15,13 @@ function registrarse() {
 function crearVentana() {
     let div = document.querySelector('#formularios');
     document.getElementsByTagName('body')[0].classList.add('quitar_scroll');
-    div.classList.remove('fondo_invisible');
-    div.classList.add('ventana_negra');
+    div.classList.add('modal-show');
 }
 
 function cerrarVentana() {
     let div = document.querySelector('#formularios');
     document.getElementsByTagName('body')[0].removeAttribute('class');
-    div.classList.remove('ventana_negra');
-    div.classList.add('fondo_invisible');
-
-    let ventana = document.querySelector('#ventana');
-    ventana.classList.remove('ventana_registro');
+    div.classList.remove('modal-show');
 }
 
 function formularioLogin() {
