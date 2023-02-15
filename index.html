@@ -110,5 +110,13 @@
     <script src="js/comprobarCamposForm.js"></script>
     <!-- Funciones para iniciar sesion y registrar usuario -->
     <script src="js/enviarDatosFormulario.js"></script>
+    <!-- Cargar las rutas en formato de card -->
+    <script src="js/cardRutas.js"></script>
+
+    <script>
+        if(localStorage.getItem('token')) {
+            let botonHero = document.querySelector('.boton-hero').classList.add('fondo_invisible');
+        }
+    </script>
 </body>
 </html>

@@ -6,7 +6,6 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 $con = new Conexion();
-// var_dump($con);
 $key = 'This 1s S3cr3T';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -29,9 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $birthday = $user->birthday;
         $activities = implode(",", $user->actividades);
 
+        $passHash = hash("sha512", $pass);
+
         $sql = "INSERT INTO users (username, fullname,  email, pass, height, 
                 weight, birthday, activities) VALUES ('$username', '$fullname', '$email', 
-                '$pass', '$height', '$weight', '$birthday', '$activities')";
+                '$passHash', '$height', '$weight', '$birthday', '$activities')";
 
         $sql2 = "SELECT username FROM users WHERE username='$username'";
 
@@ -68,13 +69,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = $user->username;
         $pass = $user->pass;
 
-        $sql = "SELECT id, username FROM users WHERE username='$username' AND pass='$pass'";
+        $sql = "SELECT id, username, pass FROM users WHERE username='$username'";
 
         $jwt = Conexion::jwt($username);
 
         try {
             $usuario = $con->query($sql)->fetch_all(MYSQLI_ASSOC);
-            if ($usuario != null) {
+            /* var_dump(hash('sha512', $pass));
+            var_dump($usuario[0]['pass']); */
+            if (hash('sha512', $pass) == $usuario[0]['pass']) {
                 header("HTTP/1.1 200 OK");
                 header("Content-Type: application/json");
                 echo json_encode([

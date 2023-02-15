@@ -93,5 +93,5 @@ function recogerDatosInicio() {
 
 function cerrarSesion() {
     localStorage.clear();
-    location.reload();
+    window.location = "index.html";
 }

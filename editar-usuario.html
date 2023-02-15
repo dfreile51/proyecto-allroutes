@@ -71,5 +71,11 @@
     <script src="js/enviarDatosFormulario.js"></script>
     <!-- Funciones para Editar usuario y eliminar -->
     <script src="js/editarDatosUsuario.js"></script>
+
+    <script>
+        if(!localStorage.getItem('token')) {
+            window.location = "index.html";
+        }
+    </script>
 </body>
 </html>

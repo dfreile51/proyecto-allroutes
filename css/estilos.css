@@ -4,6 +4,7 @@
     --verde_oscuro: #499b2e;
     --negro: #000000;
     --blanco: #ffffff;
+    --blanco_oscuro: #dbdbdb;
     --gris: #5f5f5f;
     --gris_claro: #f4f4f4;
 }
@@ -12,6 +13,7 @@
 html {
     font-size: 62.5%;
     box-sizing: border-box;
+    min-height: 100vh;
 }
 
 *, *:before, *:after {
@@ -581,4 +583,153 @@ img[alt='lupa'] {
 
 .trail_item h4 {
     margin: 0;
+}
+
+/* Estilos para la pagina de detalle de ruta */
+.detalle_ruta {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 30rem;
+    grid-template-rows: auto 1.4rem auto 1fr;
+    grid-template-areas: 
+    "header     download"
+    "map         sidebar"
+    "map         sidebar"
+    "description sidebar"
+    ;
+    gap: 0 2rem;
+}
+
+.detalle_name {
+    grid-area: header;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+.detalle_name span {
+    font-size: 4.2rem;
+    font-weight: bold;
+}
+
+.detalle_mapa {
+    grid-area: map;
+    height: 30rem;
+}
+
+.detalle_descripcion {
+    text-align: justify;
+    grid-area: description;
+    padding: 2rem 2rem 2rem 0;
+}
+
+.detalle_descripcion span {
+    font-size: 2.3rem;
+}
+
+.detalle_sidebar {
+    grid-area: sidebar;
+}
+
+.detalle_descarga {
+    grid-area: download;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn-detalle {
+    padding: 1rem 0;
+    margin-bottom: .5rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+}
+
+.btn-descargar {
+    color: var(--blanco);
+    background-color:#4c8c2b;
+    border: .1rem solid #4c8c2b;
+    border-radius: .5rem;
+}
+
+.btn-descargar:hover {
+    background-color:#3e7423;
+}
+
+.btn-gps {
+    background-color: var(--blanco);
+    color: #4c8c2b;
+    border: .3rem solid #4c8c2b;
+    border-radius: .5rem;
+}
+
+.btn-gps:hover {
+    background-color: var(--blanco_oscuro);
+}
+
+.detalle_autor {
+    display: flex;
+    background: var(--gris_claro);
+    border-radius: .3rem;
+    padding: 1rem;
+    margin-top: 3rem;
+}
+
+.detalle_autorInfo {
+    padding-left: 2rem;
+}
+
+.detalle_autorInfo p, h3 {
+    margin: 0;
+    margin-bottom: .5rem;
+}
+
+.detalle_userImage {
+    border-radius: 100%;
+    max-width: 8rem;
+    max-height: 8rem;
+    overflow: hidden;
+}
+
+.detalle_userImage img {
+    width: 100%;
+    height: 100%;
+}
+
+.detalle_datos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem 0;
+    padding-top: 2rem;
+}
+
+.datos_items {
+    text-align: center;
+    border-bottom: .1rem solid #f0f0f0;
+}
+
+.datos_items p {
+    margin: 0 0 .4rem 0;
+    font-size: 1.3rem;
+    line-height: 2rem;
+    color: #828282;
+}
+
+.datos_items span {
+    font-size: 2rem;
+    color: #252525;
+    font-weight: bold;
+    line-height: 3rem;
+}
+
+.no-border {
+    border-bottom: none;
+}
+
+.border-right {
+    border-right: .1rem solid #f0f0f0;
 }

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir ruta</title>
+    <link rel="preload" href="css/normalize.css" as="style">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="preload" href="css/estilos.css" as="style">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+    <header id="encabezado">
+    </header>
+
+    <main style="display: flex; flex-direction: column; align-items: center;">
+        <div class="contenido sombra">
+            <h1 style="text-align: center;">Subir ruta</h1>
+            <form action="#" method="post" id="form">
+                <label for="nameRoute">Nombre de la ruta:</label>
+                <input class='inputs' type="text" name="nameRoute" id="nameRoute">
+                <br>
+                <label for="tipoRuta">Tipo de la ruta:</label>
+                <select name="tipoRuta" id="tipoRuta">
+                    <option value="circular">Circular</option>
+                    <option value="linea">Linea</option>
+                </select>
+                <br>
+                <label for="fechaSub">Fecha de la ruta:</label>
+                <input class='inputs' type="date" name="fechaSub" id="fechaSub">
+                <br>
+                <label for="fileGpx">Fichero GPX:</label>
+                <input class="inputs" name="fileInput" type="file" id="fileGpx">
+                <br>
+                <label for="desc">Descripcion:</label>
+                <textarea name="descText" id="descText" rows="10"></textarea>
+                <br>
+                <div class="botones-editarUsu">
+                    <input class="boton guardar-cambios" type="submit" value="Subir ruta">
+                    <a class="boton cancelar" href="./index.html">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer id="piePagina">
+    </footer>
+
+    <!-- Cargar header y footer -->
+    <script src="js/cargaHeaderFooter.js"></script>
+
+    <script src="js/GPXParser.js"></script>
+    <!-- Funciones para iniciar sesion y registrar usuario -->
+    <script src="js/enviarDatosFormulario.js"></script>
+
+    <script>
+        let ficherogpx = document.querySelector('#fileGpx');
+        let id_user = localStorage.getItem('id');
+        let username = localStorage.getItem('username');
+        let token = localStorage.getItem('token');
+
+        document.getElementById('form').addEventListener('submit', function (event) {
+            event.preventDefault()
+
+            let route_name = document.querySelector('#nameRoute').value;
+            let descrip = document.querySelector('#descText').value;
+            let circular = document.querySelector('#tipoRuta').value;
+            let date = document.querySelector('#fechaSub').value;
+
+            let file = ficherogpx.files[0];
+            let reader = new FileReader();
+            reader.onload = function () {
+                let gpx = reader.result;
+                let parser = new gpxParser();
+                parser.parse(gpx);
+                let json = parser.tracks[0];
+                let ratio = Math.round(json.points.length / 300);
+
+                let points = json.points.filter((_, index) => index % ratio == 0);
+
+                let slopes = json.slopes.filter((_, index) => index % ratio == 0);
+
+                let distance = json.distance?.total;
+                let max_height = json.elevation?.max;
+                let min_height = json.elevation?.min;
+                let pos_slope = json.elevation?.pos;
+                let neg_slope = json.elevation?.neg;
+                let start_lat = json.points[0].lat;
+                let start_lon = json.points[0].lon;
+
+                let puntos = json.points.map(({ lat, lon }) => {
+                    return {
+                        lat,
+                        lon
+                    }
+                });
+
+                let datos = {
+                    id_user,
+                    route_name,
+                    descrip,
+                    distance,
+                    max_height,
+                    min_height,
+                    pos_slope,
+                    neg_slope,
+                    start_lat,
+                    start_lon,
+                    circular,
+                    date,
+                    points: JSON.stringify(puntos)
+                }
+                console.log(datos);
+
+                fetch(`http://localhost/proyecto-allroutes/php/api/loadRoute/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(datos)
+                })
+                    .then(response => {
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data);
+                    })
+            }
+            reader.readAsText(file);
+            let gpx = new gpxParser();
+            gpx.parse("<xml><gpx></gpx></xml>");
+        })
+    </script>
+</body>
+
+</html>
