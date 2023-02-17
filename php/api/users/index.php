@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Content-Type: application/json");
             echo json_encode([
                 'success' => false,
-                'msg' => "Alguno de los campos esta vacío"
+                'msg' => "Error al registrar el usuario"
             ]);
         }
         /* INICIAR SESION USUARIO */
@@ -75,18 +75,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
             $usuario = $con->query($sql)->fetch_all(MYSQLI_ASSOC);
-            /* var_dump(hash('sha512', $pass));
-            var_dump($usuario[0]['pass']); */
-            if (hash('sha512', $pass) == $usuario[0]['pass']) {
-                header("HTTP/1.1 200 OK");
-                header("Content-Type: application/json");
-                echo json_encode([
-                    'success' => true,
-                    'msg' => "Se ha iniciado sesion",
-                    'id' => $usuario[0]['id'],
-                    'username' => $usuario[0]['username'],
-                    'token' => $jwt
-                ]);
+            
+            if(count($usuario) > 0) {
+                if (hash('sha512', $pass) == $usuario[0]['pass']) {
+                    header("HTTP/1.1 200 OK");
+                    header("Content-Type: application/json");
+                    echo json_encode([
+                        'success' => true,
+                        'msg' => "Se ha iniciado sesion",
+                        'id' => $usuario[0]['id'],
+                        'username' => $usuario[0]['username'],
+                        'token' => $jwt
+                    ]);
+                }
             } else {
                 header("HTTP/1.1 400 Bad Request");
                 header("Content-Type: application/json");
@@ -275,7 +276,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
                     'msg' => "Usuario modificado correctamente"
                 ]);
             } catch (mysqli_sql_exception $e) {
-                header("HTTP/1.1 404 Bad Request");
+                header("HTTP/1.1 400 Bad Request");
                 header("Content-Type: application/json");
                 echo json_encode([
                     'success' => false,

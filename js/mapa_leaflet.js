@@ -12,7 +12,10 @@ function addMarkers() {
     let inputDistMin = document.querySelector("#dist_min").value;
     let inputDistMax = document.querySelector("#dist_max").value;
 
-    let url = `http://localhost/proyecto-allroutes/php/api/routes?name=${inputNombreRuta}&min_dist=${inputDistMin}&max_dist=${inputDistMax}`;
+    let url = `http://localhost/proyecto-allroutes/php/api/routes?name=${inputNombreRuta}`;
+
+    inputDistMin != '' ? url += `&min_dist=${inputDistMin}` : '';
+    inputDistMax != '' ? url += `&min_dist=${inputDistMax}` : '';
 
     fetch(url, {
         method: "GET",

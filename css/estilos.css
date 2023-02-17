@@ -104,19 +104,16 @@ body {
 }
 
 .botones-editarUsu .guardar-cambios {
-    margin-right: .5rem;
-}
+    margin: 0 .5rem;}
 
 .botones-editarUsu .cancelar {
-    margin-left: .5rem;
-}
+    margin: 0 .5rem;}
 
 .botones .nav-inicio {
-    margin-right: .5rem;
-}
+    margin: 0 .5rem;}
 
 .botones .nav-registro, .cerrar-sesion {
-    margin-left: .5rem;
+    margin: 0 .5rem;
 }
 /* Fin estilos para el header */
 

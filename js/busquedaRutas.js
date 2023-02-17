@@ -9,8 +9,8 @@ function mainHeader() {
                 <div class='main__filters'>
                     <form action="#" method="post" onsubmit="funcionSubmit(event)">
                         <input type='text' name='nombre_ruta' id='nombre_ruta' onkeyup='mainList()' placeholder='Nombre ruta...'>
-                        <input type='number' name='dist_min' id='dist_min' onkeyup='mainList()' min='0' value='0' placeholder='Distacia mínima...'>
-                        <input type='number' name='dist_max' id='dist_max' onkeyup='mainList()' min='0' value='100000' placeholder='Distacia máxima...'>
+                        <input type='number' name='dist_min' id='dist_min' onkeyup='mainList()' min='0' placeholder='Distacia mínima...'>
+                        <input type='number' name='dist_max' id='dist_max' onkeyup='mainList()' min='0' placeholder='Distacia máxima...'>
                     </form>
                 </div>`;
 }
@@ -31,14 +31,11 @@ function mainList() {
     let inputNombreRuta = document.querySelector("#nombre_ruta").value;
     let inputDistMin = document.querySelector("#dist_min").value;
     let inputDistMax = document.querySelector("#dist_max").value;
-    // console.log(inputNombreRuta);
+    
+    let url = `http://localhost/proyecto-allroutes/php/api/routes?name=${inputNombreRuta}`;
 
-    /* inputDistMax.value ? inputDistMax.value : inputDistMax.value = 100000;
-    inputDistMin.value ? inputDistMin.value : inputDistMin.value = 0; */
-
-    // let url = `http://localhost:5000/api/route?name=${inputNombreRuta}&min_dist=${inputDistMin}&max_dist=${inputDistMax}`;
-    let url = `http://localhost/proyecto-allroutes/php/api/routes?name=${inputNombreRuta}&min_dist=${inputDistMin}&max_dist=${inputDistMax}`;
-    console.log(url);
+    inputDistMin != '' ? url += `&min_dist=${inputDistMin}` : '';
+    inputDistMax != '' ? url += `&min_dist=${inputDistMax}` : '';
 
     fetch(url, {
         method: 'GET',
@@ -51,7 +48,6 @@ function mainList() {
         })
         .then(data => {
             if (data) {
-                console.log(data);
                 let datos = "";
                 if (data.length > 0) {
                     data.forEach(item => {

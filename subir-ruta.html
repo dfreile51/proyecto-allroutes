@@ -61,25 +61,28 @@
     <script src="js/enviarDatosFormulario.js"></script>
 
     <script>
-        let ficherogpx = document.querySelector('#fileGpx');
-        let id_user = localStorage.getItem('id');
-        let username = localStorage.getItem('username');
-        let token = localStorage.getItem('token');
-
+        // Subir el fichero
         document.getElementById('form').addEventListener('submit', function (event) {
             event.preventDefault()
 
-            let route_name = document.querySelector('#nameRoute').value;
-            let descrip = document.querySelector('#descText').value;
-            let circular = document.querySelector('#tipoRuta').value;
-            let date = document.querySelector('#fechaSub').value;
+            let ficherogpx = document.querySelector('#fileGpx');
 
             let file = ficherogpx.files[0];
             let reader = new FileReader();
             reader.onload = function () {
+                let id_user = localStorage.getItem('id');
+                let username = localStorage.getItem('username');
+                let token = localStorage.getItem('token');
+
+                let route_name = document.querySelector('#nameRoute').value;
+                let descrip = document.querySelector('#descText').value;
+                let circular = document.querySelector('#tipoRuta').value;
+                let date = document.querySelector('#fechaSub').value;
+
                 let gpx = reader.result;
                 let parser = new gpxParser();
                 parser.parse(gpx);
+
                 let json = parser.tracks[0];
                 let ratio = Math.round(json.points.length / 300);
 
@@ -115,14 +118,16 @@
                     start_lon,
                     circular,
                     date,
-                    points: JSON.stringify(puntos)
+                    "points": JSON.stringify(puntos),
                 }
-                console.log(datos);
 
-                fetch(`http://localhost/proyecto-allroutes/php/api/loadRoute/`, {
+                let url = `http://localhost/proyecto-allroutes/php/api/loadRoute/?username=${username}`;
+
+                fetch(url, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
                     },
                     body: JSON.stringify(datos)
                 })
@@ -134,9 +139,12 @@
                     })
             }
             reader.readAsText(file);
-            let gpx = new gpxParser();
-            gpx.parse("<xml><gpx></gpx></xml>");
         })
+    </script>
+    <script>
+        if(!localStorage.getItem('token')) {
+            window.location = "index.html";
+        }
     </script>
 </body>
 

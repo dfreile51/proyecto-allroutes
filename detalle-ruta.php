@@ -31,6 +31,12 @@
     require_once "php/funciones/funciones.php";
     $idRuta = $_REQUEST['id'];
     $ruta = obtenerRuta($idRuta);
+    $replace1 = str_replace('"lat":', '', $ruta['points']);
+    $replace2 = str_replace('"lon":', '', $replace1);
+    $replace3 = str_replace('[', '', $replace2);
+    $replace4 = str_replace(']', '', $replace3);
+    $replace5 = str_replace('{', '[', $replace4);
+    $replace6 = str_replace('}', ']', $replace5);
     ?>
 
     <main style="display: flex; flex-direction: column; align-items: center;">
@@ -123,10 +129,15 @@
     <!-- Funcion para crear el mapa de leaflet -->
     <script>
         let map = L.map('map')
-            .setView([<?php echo $ruta['start_lat'] ?>, <?php echo $ruta['start_lon'] ?>], 13);
+            .setView([<?php echo $ruta['start_lat'] ?>, <?php echo $ruta['start_lon']; ?>], 12);
         L.tileLayer('https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=8fea5469271547bdaa2bc623555e4432', {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.thunderforest.com/terms/">ThunderForest</a>'
+        }).addTo(map);
+
+        L.polyline([<?php echo $replace6; ?>], {
+            color: 'blue',
+            weight: 10,
         }).addTo(map);
 
         let marker = L.marker([<?php echo $ruta['start_lat'] ?>, <?php echo $ruta['start_lon'] ?>], {

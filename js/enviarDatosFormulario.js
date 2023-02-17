@@ -35,7 +35,7 @@ function recogerDatos() {
         "birthday": `${fechaNac.value}`,
         actividades,
     };
-    console.log(datosUsuario);
+    
     let url = "http://localhost/proyecto-allroutes/php/api/users/";
 
     fetch(url, {
