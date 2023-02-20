@@ -37,6 +37,7 @@ function comprobarPassReg() {
     let passReg = document.querySelector('#passReg');
     let passRegError = document.querySelector('#passRegError');
 
+    // COMPRUEBA QUE LA CONTRASEÑA SEA MAYOR A 8 CARACTERES
     if(passReg.value.length < 8) {
         passReg.classList.remove('inputs');
         passReg.classList.add('inputs2');
@@ -69,6 +70,7 @@ function comprobarRepPass() {
     let repPass = document.querySelector('#repPass');
     let repPassError = document.querySelector('#repPassError');
 
+    // COMPRUEBA QUE EL CAMPO DE REPETIR CONTRASEÑA SEA IGUAL QUE EL CAMPO DE LA CONTRASEÑA
     if(passReg.value != repPass.value) {
         repPass.classList.remove('inputs');
         repPass.classList.add('inputs2');

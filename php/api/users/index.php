@@ -75,8 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
             $usuario = $con->query($sql)->fetch_all(MYSQLI_ASSOC);
-            
-            if(count($usuario) > 0) {
+
+            if (count($usuario) > 0) {
                 if (hash('sha512', $pass) == $usuario[0]['pass']) {
                     header("HTTP/1.1 200 OK");
                     header("Content-Type: application/json");
@@ -86,6 +86,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         'id' => $usuario[0]['id'],
                         'username' => $usuario[0]['username'],
                         'token' => $jwt
+                    ]);
+                } else {
+                    header("HTTP/1.1 400 Bad Request");
+                    header("Content-Type: application/json");
+                    echo json_encode([
+                        'success' => false,
+                        'msg' => "Contraseña incorrecta"
                     ]);
                 }
             } else {
@@ -257,7 +264,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
         $birthday = $user->birthday;
         $activities = implode(",", $user->actividades);
 
-        $sql = "UPDATE users SET email='$email', pass='$pass', height='$height', weight='$weight', birthday='$birthday', activities='$activities' WHERE username='$username'";
+        $passHash = hash("sha512", $pass);
+
+        $sql = "UPDATE users SET email='$email', pass='$passHash', height='$height', weight='$weight', birthday='$birthday', activities='$activities' WHERE username='$username'";
 
         if (!isValidToken($token, $username)) {
             header("HTTP/1.1 401 Bad Request");

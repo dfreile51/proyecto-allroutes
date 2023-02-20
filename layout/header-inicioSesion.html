@@ -3,7 +3,28 @@
     <span class="nombre-empresa">AllRoutes</span>
 </a>
 <nav class="botones">
-    <a href="./editar-usuario.html" class="enlaces boton nav-inicio">Editar perfil</a>
+    <div class="ul-first">
+        <div class="mi-cuenta" onclick="addNavList()">
+            <div class="img-perfil">
+                <img src="imgs/profile-image.png" alt="profile image">
+            </div>
+        </div>
+        <div id="ul-second" class="ul-second fondo_invisible sombra">
+            <a href="./editar-usuario.html">
+                <img src="imgs/usuario.png" alt="usuario.png">
+                <span>&nbsp;Editar perfil</span>
+            </a>
+            <a href="./mis-rutas.html">
+                <img src="imgs/orientacion.png" alt="orientacion.png">
+                <span>&nbsp;Mis rutas</span>
+            </a>
+            <button onclick="cerrarSesion()">
+                <img src="imgs/desconectar.png" alt="desconectar.png">
+                <span>&nbsp;Cerrar sesión</span>
+            </button>
+        </div>
+    </div>
+    <!-- <a href="./editar-usuario.html" class="enlaces boton nav-inicio">Editar perfil</a>
     <a href="./mis-rutas.html" class="enlaces boton nav-inicio">Mis rutas</a>
-    <button class="boton cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
+    <button class="boton cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</button> -->
 </nav>

@@ -30,3 +30,17 @@ function loadFooter(url) {
             document.querySelector('#piePagina').innerHTML = data;
         })
 }
+
+function addNavList() {
+    let ulSecond = document.querySelector('#ul-second');
+
+    if(ulSecond.classList.contains('fondo_invisible')) {
+        ulSecond.classList.remove('fondo_invisible');
+        if(window.innerWidth <= 768) {
+            document.getElementsByTagName('body')[0].classList.add('quitar_scroll');
+        }
+    } else {
+        ulSecond.classList.add('fondo_invisible');
+        document.getElementsByTagName('body')[0].removeAttribute('class');
+    }
+}

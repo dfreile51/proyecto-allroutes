@@ -39,8 +39,8 @@
     $replace6 = str_replace('}', ']', $replace5);
     ?>
 
-    <main style="display: flex; flex-direction: column; align-items: center;">
-        <div class="contenido sombra detalle_ruta">
+    <main style="display: flex; flex-direction: column; align-items: center; justify-content: center;" class="main__resto">
+        <div class="contenido sombra detalle_ruta" style="width: 100%; max-height: 76.5rem; overflow: hidden;">
             <div class="detalle_name">
                 <span><?php echo $ruta['route_name'] ?></span>
             </div>
@@ -51,7 +51,7 @@
             <div class="detalle_mapa">
                 <div id="map"></div>
             </div>
-            <div class="detalle_descripcion">
+            <div class="detalle_descripcion" style="overflow: auto;">
                 <span><?php echo $ruta['descrip'] ?></span>
             </div>
             <div class="detalle_sidebar">
@@ -137,7 +137,7 @@
 
         L.polyline([<?php echo $replace6; ?>], {
             color: 'blue',
-            weight: 10,
+            weight: 3,
         }).addTo(map);
 
         let marker = L.marker([<?php echo $ruta['start_lat'] ?>, <?php echo $ruta['start_lon'] ?>], {

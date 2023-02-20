@@ -15,6 +15,18 @@
     <link rel="preload" href="css/estilos.css" as="style">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
+<style>
+    body {
+        background-image: url('imgs/paisaje.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        backdrop-filter: brightness(70%);
+    }
+
+    textarea {
+        resize: none;
+    }
+</style>
 
 <body>
     <header id="encabezado">
@@ -28,7 +40,7 @@
                 <input class='inputs' type="text" name="nameRoute" id="nameRoute">
                 <br>
                 <label for="tipoRuta">Tipo de la ruta:</label>
-                <select name="tipoRuta" id="tipoRuta">
+                <select class="inputs" name="tipoRuta" id="tipoRuta">
                     <option value="circular">Circular</option>
                     <option value="linea">Linea</option>
                 </select>
@@ -40,7 +52,7 @@
                 <input class="inputs" name="fileInput" type="file" id="fileGpx">
                 <br>
                 <label for="desc">Descripcion:</label>
-                <textarea name="descText" id="descText" rows="10"></textarea>
+                <textarea class="inputs" name="descText" id="descText"></textarea>
                 <br>
                 <div class="botones-editarUsu">
                     <input class="boton guardar-cambios" type="submit" value="Subir ruta">
@@ -55,7 +67,7 @@
 
     <!-- Cargar header y footer -->
     <script src="js/cargaHeaderFooter.js"></script>
-
+    <!-- JS GPXParser -->
     <script src="js/GPXParser.js"></script>
     <!-- Funciones para iniciar sesion y registrar usuario -->
     <script src="js/enviarDatosFormulario.js"></script>
@@ -135,7 +147,11 @@
                         return response.json();
                     })
                     .then(data => {
-                        console.log(data);
+                        if(data['success']) {
+                            alert(data['msg']);
+                        } else {
+                            alert(data['msg']);
+                        }
                     })
             }
             reader.readAsText(file);

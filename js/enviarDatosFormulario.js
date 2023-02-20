@@ -50,9 +50,9 @@ function recogerDatos() {
         })
         .then(data => {
             if (data['success']) {
-                console.log(data['msg']);
+                alert(data['msg']);
             } else {
-                console.log(data['msg']);
+                alert(data['msg']);
             }
         })
 }
@@ -82,11 +82,12 @@ function recogerDatosInicio() {
         .then(data => {
             if (data['success']) {
                 localStorage.setItem('token', `${data['token']}`);
-                localStorage.setItem('username', `${data['username']}`)
-                localStorage.setItem('id', `${data['id']}`)
+                localStorage.setItem('username', `${data['username']}`);
+                localStorage.setItem('id', `${data['id']}`);
+                alert(data['msg']);
                 location.reload();
             } else {
-                console.log(data['msg']);
+                alert(data['msg']);
             }
         })
 }

@@ -1,25 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Mis rutas</title>
     <link rel="preload" href="css/normalize.css" as="style">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
     <link rel="preload" href="css/estilos.css" as="style">
     <link rel="stylesheet" href="css/estilos.css">
 </head>
+
+<style>
+body {
+        background-image: url('imgs/paisaje3.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        backdrop-filter: brightness(70%);
+    }
+</style>
+
 <body>
     <header id="encabezado">
     </header>
 
     <main style="display: flex; flex-direction: column; align-items: center;">
-        <div class="contenido sombra">
-            <h2>En desarrollo</h2>
+        <div class="contenido sombra" style="width: 100%; height: 100%; max-height: 76.5rem; overflow: hidden;">
+            <div class="mr__header">
+                <h1 style="text-align: center;">Mis rutas</h1>
+                <div class="mr__subheader">
+                    <div class='mr__filters'>
+                        <form action="#" method="post" onsubmit="funcionSubmit(event)">
+                            <input class="inputs3" type='text' name='nombre_ruta' id='nombre_ruta'
+                                onkeyup='cargarRutas()' placeholder='Nombre ruta...'>
+                            <input class="inputs3" type='number' name='dist_min' id='dist_min' onkeyup='cargarRutas()'
+                                min='0' placeholder='Distacia mínima...'>
+                            <input class="inputs3" type='number' name='dist_max' id='dist_max' onkeyup='cargarRutas()'
+                                min='0' placeholder='Distacia máxima...'>
+                        </form>
+                    </div>
+                    <div class="mr__button">
+                        <a class="enlaces boton cerrar-sesion" style="color: var(--blanco)" href="subir-ruta.html">Subir
+                            ruta</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mr__body">
+
+            </div>
         </div>
     </main>
 
@@ -28,11 +61,16 @@
 
     <!-- Cargar header y footer -->
     <script src="js/cargaHeaderFooter.js"></script>
-    
+    <!-- Cargar rutas del usuario -->
+    <script src="js/misRutas.js"></script>
+    <!-- Funciones para iniciar sesion y registrar usuario -->
+    <script src="js/enviarDatosFormulario.js"></script>
+
     <script>
-        if(!localStorage.getItem('token')) {
+        if (!localStorage.getItem('token')) {
             window.location = "index.html";
         }
     </script>
 </body>
+
 </html>

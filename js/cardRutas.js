@@ -16,18 +16,23 @@ function cargarRutas() {
         })
         .then(data => {
             if (data) {
-                console.log(data);
+                let cont = 0;
                 let datos = "";
                 if (data.length > 0) {
                     data.forEach(item => {
-                        datos += `
-                        <div class="card-ruta">
-                            <img src="imgs/default-image.jpg" alt="imagen">
-                            <h4>${item['route_name']}</h4>
-                            <p>${item['descrip']}</p>
-                            <a href="detalle-ruta.php?id=${item['id']}">Leer más</a>
-                        </div>
-                `;
+                        cont++;
+                        if (cont <= 6) {
+                            datos += `
+                                <div class="card-ruta">
+                                    <img src="imgs/default-image.jpg" alt="imagen">
+                                    <h4>${item['route_name']}</h4>
+                                    <div class='card-descrip'>
+                                        <p>${item['descrip']}</p>
+                                    </div>
+                                    <a href="detalle-ruta.php?id=${item['id']}">Leer más</a>
+                                </div>
+                            `;
+                        }
                     });
 
                 } else {

@@ -24,7 +24,6 @@ function rellenarCamposForm() {
             let estatura = document.querySelector('#estatura');
             let peso = document.querySelector('#peso');
             let fechaNac = document.querySelector('#fechaNac');
-            let pass = document.querySelector('#pass');
             let senderismo = document.querySelector('#senderismo');
             let bicicleta = document.querySelector('#bicicleta');
             let running = document.querySelector('#running');
@@ -38,7 +37,6 @@ function rellenarCamposForm() {
             estatura.value = data['height'];
             peso.value = data['weight'];
             fechaNac.value = data['birthday'];
-            pass.value = data['pass'];
             senderismo.checked = data['activities'].some((item) => item == 'senderismo');
             bicicleta.checked = data['activities'].some((item) => item == 'bicicleta');
             running.checked = data['activities'].some((item) => item == 'running');
@@ -93,9 +91,9 @@ function editarUsuario() {
     })
     .then(data => {
         if (data['success']) {
-            console.log(data['msg']);
+            alert(data['msg']);
         } else {
-            console.log(data['msg']);
+            alert(data['msg']);
         }
     })
 }
@@ -115,11 +113,11 @@ function eliminarCuenta() {
     })
     .then(data => {
         if(data['success']) {
-            console.log(data['msg']);
+            alert(data['msg']);
             localStorage.clear();
             window.location = "index.html"
         } else{
-            console.log(data['msg']);
+            alert(data['msg']);
         }
     })
 }
